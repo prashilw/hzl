@@ -1,0 +1,18 @@
+.sapUiTheme-sap_bluecrystal {
+    font-size: 0.875rem !important;
+}
+
+/* Solution slurry report - start */
+	.solSlurRptPage .dykeThickner{
+		color: #bb0808 !important;
+	}
+	.solSlurRptPage .tank{
+		color: #3b0bb1 !important;
+	}
+	.solSlurRptPage .thickner{
+		color: #136f13 !important;
+	}
+	.solSlurRptPage .reactor{
+		color: #9e059a !important;
+	}
+/* Solution slurry report - end */

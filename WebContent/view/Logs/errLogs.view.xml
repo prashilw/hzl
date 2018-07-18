@@ -1,0 +1,56 @@
+<mvc:View
+	height="100%"
+	controllerName="com.hzl.Controller.Logs.errLogs"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns="sap.m">	
+	<Page title="{i18n>errLog_Title}">
+		<headerContent>
+			<Text text="{i18n>logAs}"></Text>
+			<Label design="Bold" text="{viewModel>/userDetails/Rowsets/Rowset/0/Row/0/USERNAME}"></Label>
+		</headerContent>
+		<content>
+			<fb:FilterBar id="errLog_fltBar" search="onSearch" advancedMode="true">
+                <fb:filterItems>
+                    <fb:FilterItem name="A" label="{i18n>errLog_dt}" mandatory="true">
+                        <fb:control>
+                            <DateTimeInput id="errDate" valueFormat="MM-dd-yyyy" placeholder="{i18n>errLog_PH_Dt}"/>
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>	 
+			<Table showNoData='false'>
+				<columns>					
+						<Column hAlign="Center" id="dt"><Text text="{i18n>errLog_date}"/></Column>
+						<Column hAlign="Center" id="trnsPth"><Text text="{i18n>errLog_tranPth}"/></Column>
+						<Column hAlign="Center" id="src"><Text text="{i18n>errLog_src}"/></Column>
+						<Column hAlign="Center" id="msg"><Text text="{i18n>errLog_msg}"/></Column>			
+				</columns>
+			</Table>              
+			<ScrollContainer height='50rem' vertical='true'>            
+	            <Table id="errLogTable" items="{tableModel>/Rowsets/Rowset/0/Row/}">
+					<columns>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{tableModel>S_DATE}"/>
+								<Text text="{tableModel>TRX_PATH}"/>
+								<Text text="{tableModel>SOURCE}"/>
+								<Text text="{tableModel>MESSAGE}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>			
+ 		</content> 
+		<footer>
+			<Toolbar>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

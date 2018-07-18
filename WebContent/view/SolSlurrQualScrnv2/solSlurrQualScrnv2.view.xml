@@ -1,0 +1,103 @@
+<mvc:View controllerName="com.hzl.Controller.SolSlurrQualScrnv2.solSlurrQualScrnv2" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:cmn="sap.ui.commons" xmlns:table="sap.ui.table"
+	xmlns:custData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page title="{i18n>SSQS_title}">
+		<headerContent>
+			<Text text="{i18n>logAs}"></Text>
+			<Label design="Bold" text="{viewModel>/userDetails/Rowsets/Rowset/0/Row/0/USERNAME}"></Label>
+		</headerContent>	
+		<content>
+			<fb:FilterBar reset="onReset" search="onSearch">
+                <fb:filterItems>
+                   <fb:FilterItem name="SSQSpt" mandatory="true" label="{i18n>SSQSplt}">
+                        <fb:control>
+							<ComboBox id="SSQSplant" showValueStateMessage="false" placeholder="{i18n>SSQS_PH_selPlt}" items="{viewModel>/userDetails/Rowsets/Rowset/1/Row/}">
+								<core:Item key="{viewModel>PLANT}" text="{viewModel>PLANT}"/>
+							</ComboBox>
+                        </fb:control>
+                    </fb:FilterItem>                
+                    <fb:FilterItem name="SSQSd" label="{i18n>SSQSdt}" mandatory="true">
+                        <fb:control>
+                            <DateTimeInput id="SSQSdate" valueFormat="MM-dd-yyyy" placeholder="{i18n>SSQS_PH_enDt}" change="onDateChange"/>
+                        </fb:control>
+                    </fb:FilterItem>
+                </fb:filterItems>
+            </fb:FilterBar>
+			<Table showNoData='false'>
+				<headerToolbar>
+							<Toolbar>							
+								<ToolbarSpacer/>
+								<Button id="idEdit" tooltip="{i18n>editBtn}" icon="sap-icon://edit" press="handleEdit"/>
+								<Button id="idDisplay" tooltip="{i18n>editBtn}" icon="sap-icon://display" press="handleDisplay" visible="false"/>								
+								<Button tooltip="{i18n>vewSttg}" icon="sap-icon://drop-down-list" press="handleViewSettings"/>
+								<Button	tooltip="{i18n>expCSV}" icon="sap-icon://download" press="onDataExport"/>
+							</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column hAlign="Center" id="smpId"><Text text="{i18n>SSQS_smpId}"/></Column>
+					<Column hAlign="Center" id="smpNm"><Text text="{i18n>SSQS_smpNm}"/></Column>
+					<Column hAlign="Center" id="remark"><Text text="{i18n>SSQS_remark}"/></Column>
+					<Column hAlign="Center" id="znGPL"><Text text="{i18n>SSQS_znGpl}"/></Column>
+					<Column hAlign="Center" id="perH2o"><Text text="{i18n>SSQS_h2o}"/></Column>
+					<Column hAlign="Center" id="bdGrmCc"><Text text="{i18n>SSQS_bd}"/></Column>
+					<Column hAlign="Center" id="perTzn"><Text text="{i18n>SSQS_tZn}"/></Column>
+					<Column hAlign="Center" id="solGpl"><Text text="{i18n>SSQS_sldGpl}"/></Column>
+					<Column hAlign="Center" id="perPb"><Text text="{i18n>SSQS_pb}"/></Column>
+					<Column hAlign="Center" id="perZn"><Text text="{i18n>SSQS_zn}"/></Column>
+					<Column hAlign="Center" id="perCd"><Text text="{i18n>SSQS_cd}"/></Column>
+					<Column hAlign="Center" id="perAg"><Text text="{i18n>SSQS_ag}"/></Column>
+					<Column hAlign="Center" id="sluDen"><Text text="{i18n>SSQS_sluDen}"/></Column>
+					<Column hAlign="Center" id="solDen"><Text text="{i18n>SSQS_sldDen}"/></Column>					
+				</columns>
+			</Table>            
+            <ScrollContainer height='50rem' vertical='true'>
+				<Table id="SSQS_Table" items="{tableModel>/Rowsets/Rowset/0/Row/}" growingThreshold="300">
+					<columns>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>
+						<Column hAlign="Center"></Column>					
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{tableModel>EQP_NUM}"/>
+								<Text text="{tableModel>EQP_DESC}"/>
+								<cmn:TextField value="{tableModel>REMARK}" editable="{viewModel>/visiblity/tableFieldEditable}" custData:field="remark" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>ZN_GPL_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>PER_H2O_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>BD_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>PERC_ZNPT_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>SOLID_GPL_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>PER_PB_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>PER_ZN_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>PER_CD_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>PER_AG_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>SLURRY_DEN_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+								<cmn:TextField value="{tableModel>SOLID_DEN_PARAM}" editable="{viewModel>/visiblity/tableFieldEditable}" width="6rem" change="onRowChange"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="SSQSupdate" text="{i18n>SSQS_sv}" enabled="{viewModel>/enable}" press="onUpdate" visible="{viewModel>/visiblity/updateSave}"/>
+				<Button id="SSQScancel" text="{i18n>SSQS_cancel}" enabled="{viewModel>/enable}" press="onCancel"  visible="{viewModel>/visiblity/updateCancel}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
